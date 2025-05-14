@@ -186,7 +186,6 @@ class BeerEndpointTest {
                 .expectHeader().valueEquals("Content-type", "application/json")
                 .expectBodyList(BeerDTO.class)
                 .value(list -> assertThat(list.size()).isGreaterThan(1));
-
     }
 
     public BeerDTO getSavedTestBeer(){
