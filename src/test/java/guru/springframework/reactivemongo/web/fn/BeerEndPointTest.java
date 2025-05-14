@@ -19,10 +19,8 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 @Testcontainers
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -194,8 +192,6 @@ class BeerEndpointTest {
                 .header("Content-Type", "application/json")
                 .exchange()
                 .returnResult(BeerDTO.class);
-
-        List<String> location = beerDTOFluxExchangeResult.getResponseHeaders().get("Location");
 
         return webTestClient.get().uri(BeerRouterConfig.BEER_PATH)
                 .exchange().returnResult(BeerDTO.class).getResponseBody().blockFirst();
